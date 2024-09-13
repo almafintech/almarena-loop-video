@@ -7,12 +7,43 @@
     <link rel="stylesheet" href="./index.css" />
   </head>
   <body>
-    <video autoplay muted loop preload="auto">
+    <button id="fullscreen-btn">Fullscreen</button>
+    <video id="video" autoplay muted loop preload="auto">
       <source
         src="./assets/Video Institucional Almarena.mp4"
         type="video/mp4"
       />
       Your browser does not support the video tag.
     </video>
+    <script>
+      const videoElement = document.getElementById("video");
+      const fullscreenBtn = document.getElementById("fullscreen-btn");
+
+      // Function to make video fullscreen
+      function openFullscreen() {
+        if (videoElement.requestFullscreen) {
+          videoElement.requestFullscreen();
+        } else if (videoElement.mozRequestFullScreen) {
+          // Firefox
+          videoElement.mozRequestFullScreen();
+        } else if (videoElement.webkitRequestFullscreen) {
+          // Chrome, Safari, and Opera
+          videoElement.webkitRequestFullscreen();
+        } else if (videoElement.msRequestFullscreen) {
+          // IE/Edge
+          videoElement.msRequestFullscreen();
+        }
+      }
+
+      // Fullscreen button click event
+      fullscreenBtn.addEventListener("click", () => {
+        openFullscreen();
+      });
+
+      // Optionally, you can automatically start the video in fullscreen
+      window.onload = () => {
+        openFullscreen();
+      };
+    </script>
   </body>
 </html>
